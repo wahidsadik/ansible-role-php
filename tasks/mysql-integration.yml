@@ -1,0 +1,8 @@
+---
+- name: Install mysql integration
+  apt: name={{ item }} state=installed
+  with_items:
+    - php5-mysql
+  become: true
+  notify:
+  - Restart mysql
