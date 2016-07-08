@@ -3,7 +3,7 @@
 Role Name
 =========
 
-An Ansible role to install PHP and integration with Apahce (or nginx TBD).
+An Ansible role to install PHP and integration with Apache2 (or nginx TBD).
 
 The role is available on Ansible Galaxy: [https://galaxy.ansible.com/wahidsadik/ansible-role-php](https://galaxy.ansible.com/wahidsadik/ansible-role-php).
 
