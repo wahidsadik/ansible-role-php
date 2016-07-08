@@ -56,7 +56,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.ansible-role-php, integrate_with_apache: true,  integrate_with_mysql: true}
+         - { role: wahidsadik.ansible-role-php, integrate_with_apache: true,  integrate_with_mysql: true}
 
 License
 -------

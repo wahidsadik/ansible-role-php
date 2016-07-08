@@ -6,8 +6,8 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - apache-role-apache
-    - { role: username.ansible-role-php, integrate_with_apache: true }
+    - wahidsadik.apache-role-apache
+    - { role: ansible-role-php, integrate_with_apache: true }
 # - hosts: localhost
 #   remote_user: root
 #   roles:
