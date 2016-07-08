@@ -4,10 +4,13 @@
 - debug: msg="integrate_with_apache = {{integrate_with_apache}}"
 - debug: msg="integrate_with_mysql = {{integrate_with_mysql}}"
 
-- include: php.yml
+- name: Include php.yml
+  include: php.yml
 
-- include: apache-integration.yml
+- name: Conditionally include apache-integration.yml
+  include: apache-integration.yml
   when: integrate_with_apache
 
-- include: mysql-integration.yml
+- name: Conditionally include mysql-integration.yml
+  include: mysql-integration.yml
   when: integrate_with_mysql

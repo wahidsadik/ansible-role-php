@@ -1,0 +1,14 @@
+---
+- name: Install PHP5 (and dependencies)
+  apt: name={{ item }} state=installed
+  become: true
+  with_items:
+    - php5
+
+- name: Install php5-mcrypt for laravel
+  apt: name=php5-mcrypt state=installed
+  become: true
+
+- name: Enable mcrypt
+  command: php5enmod mcrypt
+  become: true
