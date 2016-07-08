@@ -3,13 +3,14 @@
   remote_user: root
   roles:
     - ansible-role-php
-- hosts: localhost
-  remote_user: root
-  pre_tasks:
-  - local_action: command ansible-galaxy install wahidsadik.ansible-role-apache
-  roles:
-    - { role: wahidsadik.ansible-role-apache }
-    - { role: ansible-role-php, integrate_with_apache: true }
+
+# - hosts: localhost
+#   remote_user: root
+#   pre_tasks:
+#   - local_action: command ansible-galaxy install wahidsadik.ansible-role-apache
+#   roles:
+#     - { role: wahidsadik.ansible-role-apache }
+#     - { role: ansible-role-php, integrate_with_apache: true }
 # - hosts: localhost
 #   remote_user: root
   # pre_tasks:
