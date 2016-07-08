@@ -1,0 +1,43 @@
+---
+- debug: msg="www_user = {{www_user}}"
+- debug: msg="www_group = {{www_group}}"
+- debug: msg="integrate_with_apache = {{integrate_with_apache}}"
+- debug: msg="integrate_with_mysql = {{integrate_with_mysql}}"
+
+- name: Install PHP5 (and dependencies)
+  apt: name={{ item }} state=installed
+  with_items:
+    - php5
+
+- name: Install Apache2 integration
+  apt: name={{ item }} state=installed
+  with_items:
+    - libapache2-mod-php5
+  when: integrate_with_apache
+  notify:
+  - Restart apache2
+
+- name: Put an apache2 config file
+  action: copy src=apache2.dir.conf dest=/etc/apache2/mods-available/dir.conf owner=root group=root mode=0644
+  when: integrate_with_apache
+  notify:
+  - Restart apache2
+
+- name: Enable mod_rewrite
+  command: a2enmod rewrite
+  notify:
+  - Restart apache2
+
+- name: Install php5-mcrypt for laravel
+  apt: name=php5-mcrypt state=installed
+
+- name: Enable mcrypt
+  command: php5enmod mcrypt
+
+- name: Install mysql integration
+  apt: name={{ item }} state=installed
+  with_items:
+    - php5-mysql
+  when: integrate_with_mysql
+  notify:
+  - Restart mysql

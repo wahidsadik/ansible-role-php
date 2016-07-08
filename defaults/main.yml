@@ -1,0 +1,5 @@
+---
+www_user: deployer
+www_group: www-data
+integrate_with_apache: false
+integrate_with_mysql: false
