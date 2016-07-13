@@ -1,9 +1,10 @@
 [![Build Status](https://travis-ci.org/wahidsadik/ansible-role-php.svg?branch=master)](https://travis-ci.org/wahidsadik/ansible-role-php)
+[![Galaxy](https://img.shields.io/badge/galaxy-ansible--role--php-green.svg)](https://galaxy.ansible.com/wahidsadik/ansible-role-php)
 
 Role Name
 =========
 
-An Ansible role to install PHP and integration with Apache2 (or nginx TBD).
+An Ansible role to install PHP and (optionally) integration with Apache2 and MySQL.
 
 The role is available on Ansible Galaxy: [https://galaxy.ansible.com/wahidsadik/ansible-role-php](https://galaxy.ansible.com/wahidsadik/ansible-role-php).
 
@@ -16,47 +17,66 @@ To add this from your Ansible `requirements.yml`, add this to the file:
 
 Requirements
 ------------
-
-Assumes `mysql` is installed when `integrate_with_mysql` is `true`.
-Assumes `apache2` is installed when `integrate_with_apache` is `true`.
-Assumes `nginx` is installed when `integrate_with_nginx` is `true`. (TBD)
+The `remote_user` needs to have `sudo` access or be `root` equivalent user.
 
 Role Variables
 --------------
 
 The role defines the following variables in `defaults/main.yml`:
 
-    www_user: deployer
-    www_group: www-data
-    integrate_with_apache: false
-    integrate_with_nginx: not supported yet
-    integrate_with_mysql: false
+Variable name|Default value|Comment
+-------------|-------------|-------
+`www_user` | `deployer` | -
+`www_group` | `www-data` | -
+`integrate_with_apache` | `true` | Needs Apache2
+`integrate_with_mysql` | `false` | Needs MySQL
+
+Users must pass the following parameters (i.e. variables):
+
+- None
+
 
 Dependencies
 ------------
 
-The role depends on the following roles:
+When
 
-- item 1
-- item 2
-
-(When sudo is needed)
-The `remote_user` used run this role should be able change permission of directories and files usually owned by `root`. Hence, you will probably need to `sudo` to successfully run use this role. See examples for more details.
+- `integrate_with_apache` is `true`, it is expected that Apache2 is installed on the machine.
+- `integrate_with_mysql` is `true`, it is expected that MySQL is installed on the machine.
 
 Example Playbook
 ----------------
 
-Show examples of:
-
-- With simplest possible variables
-- With non-root user and in simplest possible variables
-- With non-root user with full (and if needed other combinations) variable sets
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Example 1: Simplest example with minimum variable passing
 
     - hosts: servers
+      remote_user: root
       roles:
-         - { role: wahidsadik.ansible-role-php, integrate_with_apache: true,  integrate_with_mysql: true}
+         - wahidsadik.ansible-role-php
+
+Example 2: With sudo and minimum variable passing
+
+    - hosts: servers
+      remote_user: deployer
+      become: true
+      become_method: sudo
+      roles:
+      - wahidsadik.ansible-role-php
+
+Example 3: Overriding additional variables
+
+    - hosts: servers
+      remote_user: deployer
+      become: true
+      become_method: sudo
+      roles:
+      - {
+          role: wahidsadik.ansible-role-php,
+          www_user: myuser,
+          www_root: /var/web,
+          integrate_with_apache: true,
+          integrate_with_mysql: true
+        }
 
 License
 -------
@@ -66,6 +86,4 @@ MIT
 Author Information
 ------------------
 
-Wahid Sadik
-
-Repo: [https://github.com/wahidsadik/ansible-role-php](https://github.com/wahidsadik/ansible-role-php).
+Wahid Sadik. More at: [https://wahidsadik.github.io](https://wahidsadik.github.io).
