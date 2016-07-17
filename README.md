@@ -6,6 +6,9 @@ Role Name
 
 An Ansible role to install PHP and (optionally) integration with Apache2 and MySQL.
 
+The role also installs dependencies to enable Laravel.
+
+
 The role is available on Ansible Galaxy: [https://galaxy.ansible.com/wahidsadik/ansible-role-php](https://galaxy.ansible.com/wahidsadik/ansible-role-php).
 
 To add this role from Ansible Galaxy, run: `ansible-galaxy install wahidsadik.ansible-role-php`.
