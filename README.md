@@ -17,6 +17,11 @@ To add this from your Ansible `requirements.yml`, add this to the file:
 
     src: wahidsadik.ansible-role-php
 
+Scope
+-----
+Works with Ubuntu 14.04.
+Does not work with Ubuntu 16.04, as PHP 7 is must.
+
 
 Requirements
 ------------
