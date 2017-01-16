@@ -81,7 +81,7 @@ Example 3: Overriding additional variables
       - {
           role: wahidsadik.ansible-role-php,
           www_user: myuser,
-          www_root: /var/web,
+          www_group: www-mydata,
           integrate_with_apache: true,
           integrate_with_mysql: true
         }
